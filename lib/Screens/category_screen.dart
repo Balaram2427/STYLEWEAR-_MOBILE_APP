@@ -8,6 +8,8 @@ class CategoryScreen extends StatelessWidget {
     'Occasion-Based',
   ];
 
+  CategoryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

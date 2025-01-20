@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SearchResultsScreen extends StatelessWidget {
   final List<String> searchResults;
 
-  SearchResultsScreen({required this.searchResults});
+  const SearchResultsScreen({super.key, required this.searchResults});
 
   @override
   Widget build(BuildContext context) {

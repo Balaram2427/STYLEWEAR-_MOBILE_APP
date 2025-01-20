@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:stylewaer1/Screens/Admin_panel/admin_dashboard_screen.dart';
 import 'package:stylewaer1/Screens/Payments/payment_screen.dart' as payments;
-import 'Screens/Product browsing/product_browsing_screen.dart';
-import 'Screens/profile_screen.dart';
-import 'Screens/home_screen.dart';
-import 'Screens/Schelduling&Delivery/delivery_schedule_screen.dart'; // Import the scheduling screen
+import 'package:stylewaer1/Screens/Product%20browsing/product_browsing_screen.dart'
+    as browsing;
+import 'package:stylewaer1/Screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,12 +21,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // Remove debug banner
       home: HomeScreen(), // Set initial screen
       routes: {
-        '/admin': (context) => AdminDashboardScreen(),
-        '/product-browsing': (context) => ProductBrowsingScreen(),
-        '/payment': (context) => payments.PaymentScreen(), // Ensure correct import
-        '/scheduling': (context) => DeliveryScheduleScreen(), // Add the scheduling route
-        '/profile': (context) => ProfileScreen(),
-        // '/vendor-management': (context) => VendorManagementScreen(),
+        '/product-browsing': (context) => browsing.ProductBrowsingScreen(),
+        '/product-detail': (context) => browsing.ProductDetailScreen(
+              product: {},
+            ),
+        '/cart': (context) => browsing.CartScreen(
+              product: {},
+            ),
+        '/payment-summary': (context) => browsing.PaymentSummaryScreen(
+              product: {},
+            ),
+        '/payment': (context) => payments.PaymentScreen(),
+        // other routes
       },
     );
   }

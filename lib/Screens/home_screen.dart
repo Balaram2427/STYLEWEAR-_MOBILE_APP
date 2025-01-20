@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stylewaer1/Screens/Admin_panel/admin_dashboard_screen.dart';
+import 'package:stylewaer1/Screens/Product browsing/product_browsing_screen.dart';
+import 'package:stylewaer1/Screens/Schelduling&Delivery/delivery_schedule_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -9,13 +14,13 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   // List of widgets for each tab
-  static const List<Widget> _widgetOptions = <Widget>[
-    Center(child: Text('Admin Dashboard', style: TextStyle(fontSize: 20))),
-    Center(child: Text('Product Browsing', style: TextStyle(fontSize: 20))),
-    Center(child: Text('Payment', style: TextStyle(fontSize: 20))),
-    Center(child: Text('Scheduling', style: TextStyle(fontSize: 20))),
-    Center(child: Text('User Account', style: TextStyle(fontSize: 20))),
-    Center(child: Text('Vendor Management', style: TextStyle(fontSize: 20))),
+  static List<Widget> _widgetOptions = <Widget>[
+    AdminDashboardScreen(),
+    ProductBrowsingScreen(),
+    PaymentScreen(),
+    DeliveryScheduleScreen(),
+    //UserAccountScreen(), // This screen contains login and order history
+    //VendorManagementScreen(), // This screen contains vendor management related screens
   ];
 
   void _onItemTapped(int index) {
@@ -59,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text('Product Browsing'),
               onTap: () {
                 _onItemTapped(1);
-                Navigator.pop(context);
+                Navigator.pop(context); // Close drawer
               },
             ),
             ListTile(
@@ -72,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: Icon(Icons.schedule),
-              title: Text('Scheduling'),
+              title: Text('Delivery Schedule'),
               onTap: () {
                 _onItemTapped(3);
                 Navigator.pop(context);
@@ -97,7 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: _widgetOptions.elementAt(_selectedIndex), // Display selected content
+      body:
+          _widgetOptions.elementAt(_selectedIndex), // Display selected content
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

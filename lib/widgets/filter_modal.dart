@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FilterModal extends StatelessWidget {
+  const FilterModal({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,7 @@ class FilterModal extends StatelessWidget {
 class FilterOption extends StatelessWidget {
   final String title;
 
-  FilterOption({required this.title});
+  const FilterOption({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

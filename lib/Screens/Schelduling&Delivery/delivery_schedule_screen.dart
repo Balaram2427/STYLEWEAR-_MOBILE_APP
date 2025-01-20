@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class DeliveryScheduleScreen extends StatefulWidget {
+  const DeliveryScheduleScreen({super.key});
+
   @override
   _DeliveryScheduleScreenState createState() => _DeliveryScheduleScreenState();
 }
@@ -10,7 +12,12 @@ class _DeliveryScheduleScreenState extends State<DeliveryScheduleScreen> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _selectedDate = DateTime.now();
   String? _selectedTimeSlot;
-  List<String> _timeSlots = ['10:00 AM - 12:00 PM', '12:00 PM - 2:00 PM', '2:00 PM - 4:00 PM', '4:00 PM - 6:00 PM'];
+  final List<String> _timeSlots = [
+    '10:00 AM - 12:00 PM',
+    '12:00 PM - 2:00 PM',
+    '2:00 PM - 4:00 PM',
+    '4:00 PM - 6:00 PM'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +75,8 @@ class _DeliveryScheduleScreenState extends State<DeliveryScheduleScreen> {
                   builder: (context) {
                     return AlertDialog(
                       title: Text('Order Confirmation'),
-                      content: Text('Your order is scheduled for delivery on ${_selectedDate.toLocal()} at $_selectedTimeSlot.'),
+                      content: Text(
+                          'Your order is scheduled for delivery on ${_selectedDate.toLocal()} at $_selectedTimeSlot.'),
                       actions: [
                         TextButton(
                           onPressed: () {

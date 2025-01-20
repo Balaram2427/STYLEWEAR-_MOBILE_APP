@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ProductDetailsScreen extends StatelessWidget {
   final String productId;
 
-  ProductDetailsScreen({required this.productId});
+  const ProductDetailsScreen({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
