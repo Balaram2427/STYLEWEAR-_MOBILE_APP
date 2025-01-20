@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -180,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               SizedBox(height: 20),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: 300, // Set a fixed width for the button
                   child: ElevatedButton(
                     onPressed: _saveProfile,
@@ -190,7 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               SizedBox(height: 20),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: 300, // Set a fixed width for the button
                   child: ElevatedButton(
                     onPressed: () {
@@ -202,7 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               SizedBox(height: 20),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: 300, // Set a fixed width for the button
                   child: ElevatedButton(
                     onPressed: () {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProductBrowsingScreen extends StatefulWidget {
+  const ProductBrowsingScreen({super.key});
+
   @override
   _ProductBrowsingScreenState createState() => _ProductBrowsingScreenState();
 }
@@ -8,23 +10,42 @@ class ProductBrowsingScreen extends StatefulWidget {
 class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _selectedCategory = 'All';
-  List<String> _categories = ['All', 'Traditional Wear', 'Contemporary', 'Fusion', 'Occasion-Based'];
-  List<String> _sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
-  List<String> _colors = ['Red', 'Blue', 'Green', 'Black'];
-  List<String> _styles = ['Casual', 'Formal', 'Sporty'];
-  List<String> _brands = ['Brand A', 'Brand B', 'Brand C'];
-  List<String> _sortBy = ['Popularity', 'Price: Low to High', 'Price: High to Low', 'Newest Arrivals'];
+  final List<String> _categories = [
+    'All',
+    'Traditional Wear',
+    'Contemporary',
+    'Fusion',
+    'Occasion-Based'
+  ];
+  final List<String> _sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+  final List<String> _colors = ['Red', 'Blue', 'Green', 'Black'];
+  final List<String> _styles = ['Casual', 'Formal', 'Sporty'];
+  final List<String> _brands = ['Brand A', 'Brand B', 'Brand C'];
+  final List<String> _sortBy = [
+    'Popularity',
+    'Price: Low to High',
+    'Price: High to Low',
+    'Newest Arrivals'
+  ];
   String? _selectedSize;
   String? _selectedColor;
   String? _selectedStyle;
   String? _selectedBrand;
   String? _selectedSortBy;
   RangeValues _selectedPriceRange = RangeValues(0, 1000);
-  List<Map<String, dynamic>> _products = [
+  final List<Map<String, dynamic>> _products = [
     // Sample product data
-    for (var category in ['All','Traditional Wear', 'Contemporary', 'Fusion'])
+    for (var category in ['All', 'Traditional Wear', 'Contemporary', 'Fusion'])
       for (var i = 1; i <= 7; i++)
-        {'name': '$category Product $i', 'size': 'M','color': 'Red', 'style': 'Casual', 'price': 100 + i * 10, 'category': category, 'brand': 'Brand A'},
+        {
+          'name': '$category Product $i',
+          'size': 'M',
+          'color': 'Red',
+          'style': 'Casual',
+          'price': 100 + i * 10,
+          'category': category,
+          'brand': 'Brand A'
+        },
   ];
   List<Map<String, dynamic>> _filteredProducts = [];
 
@@ -38,7 +59,8 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
     setState(() {
       _filteredProducts = _products.where((product) {
         // Filter by category
-        if (_selectedCategory != 'All' && product['category'] != _selectedCategory) {
+        if (_selectedCategory != 'All' &&
+            product['category'] != _selectedCategory) {
           return false;
         }
         // Filter by size
@@ -58,11 +80,15 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
           return false;
         }
         // Filter by price
-        if (product['price'] < _selectedPriceRange.start || product['price'] > _selectedPriceRange.end) {
+        if (product['price'] < _selectedPriceRange.start ||
+            product['price'] > _selectedPriceRange.end) {
           return false;
         }
         // Filter by search query
-        if (_searchController.text.isNotEmpty && !product['name'].toLowerCase().contains(_searchController.text.toLowerCase())) {
+        if (_searchController.text.isNotEmpty &&
+            !product['name']
+                .toLowerCase()
+                .contains(_searchController.text.toLowerCase())) {
           return false;
         }
         return true;
@@ -136,7 +162,8 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
                             _applyFilters();
                           });
                         },
-                        items: _categories.map<DropdownMenuItem<String>>((String category) {
+                        items: _categories
+                            .map<DropdownMenuItem<String>>((String category) {
                           return DropdownMenuItem<String>(
                             value: category,
                             child: Text(category),
@@ -161,7 +188,8 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
                             _applyFilters();
                           });
                         },
-                        items: _sizes.map<DropdownMenuItem<String>>((String size) {
+                        items:
+                            _sizes.map<DropdownMenuItem<String>>((String size) {
                           return DropdownMenuItem<String>(
                             value: size,
                             child: Text(size),
@@ -186,7 +214,8 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
                             _applyFilters();
                           });
                         },
-                        items: _colors.map<DropdownMenuItem<String>>((String color) {
+                        items: _colors
+                            .map<DropdownMenuItem<String>>((String color) {
                           return DropdownMenuItem<String>(
                             value: color,
                             child: Text(color),
@@ -211,7 +240,8 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
                             _applyFilters();
                           });
                         },
-                        items: _styles.map<DropdownMenuItem<String>>((String style) {
+                        items: _styles
+                            .map<DropdownMenuItem<String>>((String style) {
                           return DropdownMenuItem<String>(
                             value: style,
                             child: Text(style),
@@ -243,7 +273,8 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
                             _applyFilters();
                           });
                         },
-                        items: _brands.map<DropdownMenuItem<String>>((String brand) {
+                        items: _brands
+                            .map<DropdownMenuItem<String>>((String brand) {
                           return DropdownMenuItem<String>(
                             value: brand,
                             child: Text(brand),
@@ -268,7 +299,8 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
                             _applyFilters();
                           });
                         },
-                        items: _sortBy.map<DropdownMenuItem<String>>((String sortBy) {
+                        items: _sortBy
+                            .map<DropdownMenuItem<String>>((String sortBy) {
                           return DropdownMenuItem<String>(
                             value: sortBy,
                             child: Text(sortBy),
@@ -324,12 +356,15 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
               ),
               itemCount: _filteredProducts.length,
               itemBuilder: (context, index) {
+                final product = _filteredProducts[index];
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductDetailScreen(product: _filteredProducts[index]),
+                        builder: (context) => ProductDetailScreen(
+                          product: product,
+                        ),
                       ),
                     );
                   },
@@ -349,35 +384,36 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            _filteredProducts[index]['name'],
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            product['name'],
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'Size: ${_filteredProducts[index]['size']}',
+                            'Size: ${product['size']}',
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'Color: ${_filteredProducts[index]['color']}',
+                            'Color: ${product['color']}',
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'Style: ${_filteredProducts[index]['style']}',
+                            'Style: ${product['style']}',
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'Price: \$${_filteredProducts[index]['price']}',
+                            'Price: \$${product['price']}',
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
@@ -397,7 +433,7 @@ class _ProductBrowsingScreenState extends State<ProductBrowsingScreen> {
 class ProductDetailScreen extends StatelessWidget {
   final Map<String, dynamic> product;
 
-  ProductDetailScreen({required this.product});
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -470,7 +506,7 @@ class ProductDetailScreen extends StatelessWidget {
 class CartScreen extends StatelessWidget {
   final Map<String, dynamic> product;
 
-  CartScreen({required this.product});
+  const CartScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -520,7 +556,8 @@ class CartScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PaymentSummaryScreen(product: product),
+                    builder: (context) =>
+                        PaymentSummaryScreen(product: product),
                   ),
                 );
               },
@@ -536,7 +573,7 @@ class CartScreen extends StatelessWidget {
 class PaymentSummaryScreen extends StatelessWidget {
   final Map<String, dynamic> product;
 
-  PaymentSummaryScreen({required this.product});
+  const PaymentSummaryScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -600,6 +637,8 @@ class PaymentSummaryScreen extends StatelessWidget {
 }
 
 class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
+
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
@@ -632,8 +671,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 labelText: 'Payment Method',
                 border: OutlineInputBorder(),
               ),
-              items: ['Credit Card', 'Debit Card', 'UPI', 'Wallet', 'Cash on Delivery']
-                  .map((String value) {
+              items: [
+                'Credit Card',
+                'Debit Card',
+                'UPI',
+                'Wallet',
+                'Cash on Delivery'
+              ].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -644,113 +688,82 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   _selectedPaymentMethod = newValue;
                 });
               },
-              value: _selectedPaymentMethod,
             ),
-            SizedBox(height: 20),
-            if (_selectedPaymentMethod == 'Credit Card' || _selectedPaymentMethod == 'Debit Card') ...[
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Cardholder Name',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.text,
+            SizedBox(height: 16.0),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Card Number',
+                border: OutlineInputBorder(),
               ),
-              SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Card Number',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
-              ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        labelText: 'Expiry Month',
-                        border: OutlineInputBorder(),
-                      ),
-                      items: List.generate(12, (index) => (index + 1).toString().padLeft(2, '0'))
-                          .map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selectedMonth = newValue;
-                        });
-                      },
-                      value: _selectedMonth,
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 16.0),
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText: 'Month',
+                      border: OutlineInputBorder(),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        labelText: 'Expiry Year',
-                        border: OutlineInputBorder(),
-                      ),
-                      items: List.generate(10, (index) => (DateTime.now().year + index).toString())
-                          .map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selectedYear = newValue;
-                        });
-                      },
-                      value: _selectedYear,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'CVV',
-                  border: OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    icon: Icon(_cvvHidden ? Icons.visibility : Icons.visibility_off),
-                    onPressed: () {
+                    items: List.generate(12, (index) {
+                      return DropdownMenuItem<String>(
+                        value: (index + 1).toString().padLeft(2, '0'),
+                        child: Text((index + 1).toString().padLeft(2, '0')),
+                      );
+                    }),
+                    onChanged: (newValue) {
                       setState(() {
-                        _cvvHidden = !_cvvHidden;
+                        _selectedMonth = newValue;
                       });
                     },
                   ),
                 ),
-                keyboardType: TextInputType.number,
-                obscureText: _cvvHidden,
-              ),
-            ],
-            if (_selectedPaymentMethod == 'UPI') ...[
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'UPI ID',
-                  border: OutlineInputBorder(),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText: 'Year',
+                      border: OutlineInputBorder(),
+                    ),
+                    items: List.generate(10, (index) {
+                      return DropdownMenuItem<String>(
+                        value: (DateTime.now().year + index).toString(),
+                        child: Text((DateTime.now().year + index).toString()),
+                      );
+                    }),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _selectedYear = newValue;
+                      });
+                    },
+                  ),
                 ),
-                keyboardType: TextInputType.text,
-              ),
-            ],
-            if (_selectedPaymentMethod == 'Wallet') ...[
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Wallet ID',
-                  border: OutlineInputBorder(),
+              ],
+            ),
+            SizedBox(height: 16.0),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'CVV',
+                border: OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _cvvHidden ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _cvvHidden = !_cvvHidden;
+                    });
+                  },
                 ),
-                keyboardType: TextInputType.text,
               ),
-            ],
-            SizedBox(height: 20),
+              obscureText: _cvvHidden,
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                // Handle payment logic here
+                // Handle payment processing
               },
               child: Text('Pay Now'),
             ),

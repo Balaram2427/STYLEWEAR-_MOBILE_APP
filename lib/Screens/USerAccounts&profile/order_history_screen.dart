@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
+  const OrderHistoryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,6 +15,8 @@ class OrderHistoryScreen extends StatelessWidget {
 }
 
 class OrderHistoryList extends StatelessWidget {
+  const OrderHistoryList({super.key});
+
   @override
   Widget build(BuildContext context) {
     // This is just a placeholder for your order history items

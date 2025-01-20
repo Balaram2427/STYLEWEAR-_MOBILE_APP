@@ -7,7 +7,8 @@ class RatingStar extends StatelessWidget {
   final Color unfilledStarColor;
   final double starSize;
 
-  RatingStar({
+  const RatingStar({
+    super.key,
     required this.rating,
     this.maxRating = 5,
     this.filledStarColor = Colors.yellow,

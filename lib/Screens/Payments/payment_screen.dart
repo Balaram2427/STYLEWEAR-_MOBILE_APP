@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
+
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
@@ -27,8 +29,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 labelText: 'Payment Method',
                 border: OutlineInputBorder(),
               ),
-              items: ['Credit Card', 'Debit Card', 'UPI', 'Wallet', 'Cash on Delivery']
-                  .map((String value) {
+              items: [
+                'Credit Card',
+                'Debit Card',
+                'UPI',
+                'Wallet',
+                'Cash on Delivery'
+              ].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -42,7 +49,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               value: _selectedPaymentMethod,
             ),
             SizedBox(height: 20),
-            if (_selectedPaymentMethod == 'Credit Card' || _selectedPaymentMethod == 'Debit Card') ...[
+            if (_selectedPaymentMethod == 'Credit Card' ||
+                _selectedPaymentMethod == 'Debit Card') ...[
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Cardholder Name',
@@ -67,7 +75,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         labelText: 'Expiry Month',
                         border: OutlineInputBorder(),
                       ),
-                      items: List.generate(12, (index) => (index + 1).toString().padLeft(2, '0'))
+                      items: List.generate(12,
+                              (index) => (index + 1).toString().padLeft(2, '0'))
                           .map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -89,7 +98,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         labelText: 'Expiry Year',
                         border: OutlineInputBorder(),
                       ),
-                      items: List.generate(10, (index) => (DateTime.now().year + index).toString())
+                      items: List.generate(
+                              10,
+                              (index) =>
+                                  (DateTime.now().year + index).toString())
                           .map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
@@ -112,7 +124,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   labelText: 'CVV',
                   border: OutlineInputBorder(),
                   suffixIcon: IconButton(
-                    icon: Icon(_cvvHidden ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(
+                        _cvvHidden ? Icons.visibility : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
                         _cvvHidden = !_cvvHidden;

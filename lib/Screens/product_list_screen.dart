@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProductListScreen extends StatelessWidget {
+  const ProductListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +22,8 @@ class ProductListView extends StatelessWidget {
     'Product 4',
     'Product 5',
   ];
+
+  ProductListView({super.key});
 
   @override
   Widget build(BuildContext context) {

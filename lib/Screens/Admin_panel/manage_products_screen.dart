@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ManageProductsScreen extends StatelessWidget {
+  const ManageProductsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,8 +16,8 @@ class ManageProductsScreen extends StatelessWidget {
         onPressed: () {
           // Add your onPressed code here!
         },
-        child: Icon(Icons.add),
         tooltip: 'Add Product',
+        child: Icon(Icons.add),
       ),
     );
   }
